@@ -1,12 +1,12 @@
 +++
 title = 'Blog.init'
 date = 2025-10-14T12:49:32-04:00
-draft = true
 +++
 
 I never gave much thought to making a blog, but more recently, I've been coming across things for which there is little or no good documentation. So, I thought why not?
 
-Of course, then I started to think more about it and realized that it would be a good way for me to keep track of projects. Nothing I do has been quick, and there's always more I *could* do, so I thought that writing down whatever I was working on and documenting my thoughts might help me put down and later pick a project back up. Lately, I've been working on a Rust-based implementation of PTP, but it's taken me longer than I expected... or rather the scope has creeped.
+# Background
+Of course, then I started to think more about it and realized that it would be a good way for me to keep track of projects. Nothing I do has been quick, and there's always more I *could* do, so I thought that writing down whatever I was working on and documenting my thoughts might help me put down and later pick a project back up. Lately, I've been working on a Rust-based implementation of PTP, but it's taken me longer than I expected... or rather the scope has creeped.{{% sidenote %}} Because of *course* it has {{% /sidenote %}}
 
 I've also looked at other platforms for blogging, and I found [Hugo] which is mostly what I'd expect a blogging platform to be, if not more involved than what I had initially hoped. However, it also gives me a great deal of control (perhaps to my own detriment) and now publishing this blog has become an endeavor and project in its own right.
 
@@ -21,4 +21,13 @@ There's no guarantee that starting a project will see it through to the finish l
 
 Finally, the Oxford comma is not a suggestion.
 
+## Style
+One appealing thing about Hugo is the ability to arbitrarily style... anything.{{% sidenote %}} This also seems to be to it's own detriment, but nevertheless seems a slight net-positive. {{% /sidenote %}} Hugo is mostly a templating engine, and so it renders markdown (or other) files into HTML, which are nice static pages. Those are from templates. This means that I can (try to) modify them to fit my style. Already, I've had to modify the Blowfish theme to support custom SCSS (so that I can customize the colors more easily), and I'll probably write about that later. But, I want the articles that I post here to not just represent my thoughts in an expository format, but I'd like it to somewhat mimic the way that I think. So, the theme and features should evolve as I figure out Hugo, Blowfish, CSS, and other things. I want you to understand not just *what* I'm thinking, but *why* and *how* I thought it.
+
+### Sidenotes
+One thing that I made work first was sidenotes. They're used in this article, and I'll probably include more in a later post, but know that it's mostly CSS, although inspired heavily by a few resources[^1] [^2] [^3]
+
 [Hugo]: https://www.gohugo.io
+[^1]: https://danilafe.com/blog/sidenotes/
+[^2]: https://scripter.co/sidenotes-using-only-css/
+[^3]: https://scottstuff.net/posts/2024/12/16/sidenotes-in-hugo-with-fixit/

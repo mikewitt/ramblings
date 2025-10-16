@@ -3,9 +3,9 @@
 
 // --- 1. Configuration ---
 // Replace these hex codes with your desired three-color palette.
-$neutral-color: #a21caf;  // e.g., Slate 500
-$primary-color: #075985;  // e.g., Blue 500
-$secondary-color: #8b5cf6; // e.g., Violet 500
+$neutral-color: #745474;  // Main color, incl. background
+$primary-color: #b50388;  // Primary Accents, such as tags
+$secondary-color: #971c00; // Secondary Accents
 
 
 // --- 2. Palette Generation Mixin ---
@@ -13,11 +13,11 @@ $secondary-color: #8b5cf6; // e.g., Violet 500
 // and keeps darken() for shades. This avoids syntax errors with some compilers.
 @mixin generate-palette($name, $base-color) {
   $palette: (
-    50: lighten($base-color, 95%),
-    100: lighten($base-color, 90%),
-    200: lighten($base-color, 75%),
-    300: lighten($base-color, 60%),
-    400: lighten($base-color, 30%),
+    50: lighten($base-color, 75%),
+    100: lighten($base-color, 60%),
+    200: lighten($base-color, 45%),
+    300: lighten($base-color, 30%),
+    400: lighten($base-color, 15%),
     500: $base-color,
     600: darken($base-color, 8%),
     700: darken($base-color, 16%),
