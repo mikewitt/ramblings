@@ -1,12 +1,11 @@
 +++
 title = 'Adventures in PTP'
 date = 2025-10-16T15:55:34-04:00
-draft = true
 +++
 
 When I first started looking, I noticed a distinct trend in information on PTP. Personally, I think that the general consensus on PTP is wrong. Namely, PTP isn't that complicated to get setup, it doesn't *require* a hardware clock, nor does it require any specific hardware support. If you want to get to sub-microsecond precision, some of those things may become important, but a basic setup doesn't require that. Of course, if you want to get down to the advertised nanosecond-level (or in the case of White Rabbit extensions, 100s of picoseconds) precision, then you probably do need some of that, but not all of it. 
 
-# A modest proposal
+## A Modest Proposal
 One goal I ended up having in my homelab was to have a reliable source of time for everything. My goal was primarily to force everything to sync to my time server locally, and not hit the web. This would reduce an attack surface, but it should make everything a good deal more precise. The easy way started as using my firewall to sync to an NTP server on the web, and set up a rule{{% sidenote %}} which I didn't really do{{% /sidenote %}}to make it so that NTP requests would be silently redirected to the firewall and not sent out over the internet. This is supposed to be relatively trivial, but of course I had to make things difficult.
 
 I've been aware for a while that you could hook up a GPS receiver and use that as a time source for an NTP server, which would increase the accuracy of the local server. Of course, if it's worth doing it's worth overdoing so I instead started to look into the possibility of having a dedicated appliance to do this for me. One thing led to another and of course 'if something is worth doing it's worth overdoing' and now I have an Ovenized Crystal Oscillator that's GPS disciplined, and a GPS antenna bolted to the side of my house.{{% sidenote %}}Which is also a fun conversation starter for folks that might want to know *why* I would want a GPS antenna on an immovable object{{% /sidenote %}} In any event, I bought a piece of equipment off eBay, and like any good eBay purchase, I had little idea *what* I actually bought.
@@ -24,8 +23,8 @@ Doing some digging, I realized my XLi was running firmware 1.92. From my researc
 
 From what I can tell, the PTPv1 spec was abandoned in favor of the new version for a few reasons, but accuracy wasn't one of them. I have a managed switch, and I can set up a dedicated VLAN for PTP, and make sure that the multicast packets make it everywhere. I can also control the priority of the packets on said VLAN, so it seems to me that for my use case, PTPv1 will be just as good as PTPv2 would be, although I need to get it working first...
 
-# Software
-Admittedly, I kind of saw this coming, and had asked Google's AI if and how to use existing software to sync the clock. Gemini helpfully told me that although the protocols are incompatible, the software `ptp4l` should have an appropriate mode to sync to a PTPv1 network. Spoiler alert: [it doesn't](https://linuxptp.nwtime.org/documentation/ptp4l/).
+## Software
+Admittedly, I (kind of) saw this coming, and had asked Google's AI if and how to use existing software to sync the clock. Gemini helpfully told me that although the protocols are incompatible, the software `ptp4l` should have an appropriate mode to sync to a PTPv1 network. Spoiler alert: [it doesn't](https://linuxptp.nwtime.org/documentation/ptp4l/).
 
 After doing some of my own thinking, I found the `ptpd` project. In the documentation, [it clearly states that it's for the PTPv2 protocol.](https://github.com/ptpd/ptpd#:~:text=PTP%20daemon%20(PTPd)%20is%20an%20implementation%20the%20Precision%20Time%20Protocol%20(PTP)%20version%202%20as%20defined%20by%20%27IEEE%20Std%201588%2D2008%27.) However, `ptpd` has been around since about 2005, before PTPv2. I found the old code, at least from [v1.1.0 of `ptpd`](https://github.com/ptpd/ptpd/tree/ptpd-1.1.0) which does support PTPv1, (and is the last to do so). It's also simple, and runs in software only--no reliance on hardware timestamping. I was able to compile that version with no (real) issues, and get it started. But... it still didn't work quite right. It also uses a PI controller to adjust the time,{{% sidenote %}}Using a PI controller isn't inherently a problem, but it does mean that it is by default not optimal, and probably not an unbiased estimator either. It makes my brain itch in the wrong way{{% /sidenote %}} and adjusts the system clock directly. The problem then becomes that I can no longer leverage another package like `chrony` to serve NTP time on the network, or I could but then not use the clock servo mechanism intrinsic to `chrony` which I assumed would be more sophisticated.
 
