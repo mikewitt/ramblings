@@ -1,5 +1,5 @@
 # -- Markup --
-# These settings are required for the theme to function.
+# These settings are for goldmark
 
 [goldmark]
   [goldmark.renderer]
