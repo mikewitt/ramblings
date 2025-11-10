@@ -1,6 +1,7 @@
 languageCode: en-US
 theme: ambitious
 baseURL: https://mike.witt.gg
+title: Mike's Ramblings
 
 buildDrafts: true
 buildFuture: false
