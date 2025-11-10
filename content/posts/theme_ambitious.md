@@ -2,6 +2,9 @@
 date: '2025-11-09T23:37:06-05:00'
 draft: true
 title: 'Theme: Ambitious'
+tags:
+  - hugo
+  - ambitious theme
 ---
 
 I've built a new theme, which I'm calling 'ambitious' because I was being overly ambitious when I did so.

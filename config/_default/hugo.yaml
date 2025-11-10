@@ -3,7 +3,7 @@ theme: ambitious
 baseURL: https://mike.witt.gg
 title: Mike's Ramblings
 
-buildDrafts: true
+buildDrafts: false
 buildFuture: false
 
 enableEmoji: true

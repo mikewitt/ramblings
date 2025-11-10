@@ -1,7 +1,11 @@
-+++
-title = 'Adventures in PTP'
-date = 2025-10-16T15:55:34-04:00
-+++
+---
+title: 'Adventures in PTP'
+date: 2025-10-16T15:55:34-04:00
+tags:
+  - PTP
+  - Rust
+  - GPS
+---
 
 When I first started looking, I noticed a distinct trend in information on PTP. Personally, I think that the general consensus on PTP is wrong. Namely, PTP isn't that complicated to get setup, it doesn't *require* a hardware clock, nor does it require any specific hardware support. If you want to get to sub-microsecond precision, some of those things may become important, but a basic setup doesn't require that. Of course, if you want to get down to the advertised nanosecond-level (or in the case of White Rabbit extensions, 100s of picoseconds) precision, then you probably do need some of that, but not all of it. 
 
