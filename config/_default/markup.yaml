@@ -1,0 +1,17 @@
+goldmark:
+  renderer:
+    unsafe: true
+  extensions:
+    extensions:
+      passthrough:
+        enabled: true
+        delimeters:
+          block: 
+            - ["\\[", "\\]"]
+            - ["$$", "$$"]
+          inline:
+            - ['\\(', '\\)']
+
+tableOfContents:
+  startLevel: 2
+  endLevel: 4
