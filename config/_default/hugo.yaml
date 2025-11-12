@@ -2,6 +2,7 @@ languageCode: en-US
 theme: ambitious
 baseURL: https://mike.witt.gg
 title: Mike's Ramblings
+copyright: "&copy; {{< year >}} Mike Witt"
 
 buildDrafts: false
 buildFuture: false
