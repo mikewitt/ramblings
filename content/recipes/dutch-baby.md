@@ -1,6 +1,5 @@
 ---
 date: '2025-11-14T22:47:30-05:00'
-draft: true
 title: 'Dutch Baby'
 tags:
   - recipe
